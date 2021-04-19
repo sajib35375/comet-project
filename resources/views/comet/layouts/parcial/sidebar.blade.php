@@ -2,8 +2,9 @@
     <div class="sidebar hidden-sm hidden-xs">
         <div class="widget">
             <h6 class="upper">Search blog</h6>
-            <form>
-                <input type="text" placeholder="Search.." class="form-control">
+            <form action="{{ route('blog.search') }}" method="POST">
+                @csrf
+                <input name="search" type="text" placeholder="Search.." class="form-control">
             </form>
         </div>
         <!-- end of widget        -->
@@ -14,7 +15,7 @@
                 $all_cat = App\Models\Category::all();
                 @endphp
                 @foreach($all_cat as $cat)
-                <li><a href="{{ $cat->id }}">{{ $cat->name }}</a>
+                <li><a href="{{ route('blog.search.cat',$cat->slug) }}">{{ $cat->name }}</a>
                 </li>
                 @endforeach
             </ul>
@@ -27,7 +28,7 @@
                 $all_tag = App\Models\Tag::all();
                 @endphp
                 @foreach($all_tag as $tag)
-                <a href="{{ $tag->id }}">{{ $tag->name }}</a>
+                <a href="{{ route('blog.search.tag',$tag->slug) }}">{{ $tag->name }}</a>
                 @endforeach
             </div>
         </div>
@@ -36,10 +37,10 @@
             <h6 class="upper">Latest Posts</h6>
             <ul class="nav">
                 @php
-                    $all_post = App\Models\Post::take(6)->latest()->get();
+                    $all_post = App\Models\Post::latest()->get();
                 @endphp
                 @foreach($all_post as $post)
-                <li><a href="{{ $post->slug }}">{{ $post->title }}<i class="ti-arrow-right"></i><span>{{ date('d M,Y',strtotime($post->created_at)) }}</span></a>
+                <li><a href="{{ route('blog.show.post',$post->slug) }}">{{ $post->title }}<i class="ti-arrow-right"></i><span>{{ date('d M,Y',strtotime($post->created_at)) }}</span></a>
                 </li>
                 @endforeach
             </ul>

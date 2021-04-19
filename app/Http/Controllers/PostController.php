@@ -93,6 +93,7 @@ class PostController extends Controller
             'content' => $request->content,
         ]);
         $post_data->category()->attach($request->category);
+        $post_data->tag()->attach($request->select);
         return redirect()->back()->with('success','Post added successfully');
     }
     public function postTrashUpdate($id){

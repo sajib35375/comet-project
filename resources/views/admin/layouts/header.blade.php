@@ -120,7 +120,7 @@
                     </div>
                 </div>
                 <a class="dropdown-item" href="profile.html">My Profile</a>
-                <a class="dropdown-item" href="settings.html">Settings</a>
+                <a class="dropdown-item" href="{{ route('pass.change') }}">Password Change</a>
                 <a id="logout_btn" class="dropdown-item" href="#">Logout</a>
                 <form id="logout_form" method="POST" action="{{ route('admin.logout') }}">
                     @csrf

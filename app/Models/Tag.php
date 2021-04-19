@@ -10,4 +10,10 @@ class Tag extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function postData(){
+        return $this->belongsToMany('App\Models\Post');
+    }
+
+
 }

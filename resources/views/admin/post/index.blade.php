@@ -70,7 +70,13 @@
                                                     @endforeach
                                                 </ul>
                                             </td>
-                                            <td>{{ $featured->post_type }}</td>
+                                            <td>
+                                                <ul>
+                                                @foreach($data->tag as $tag)
+                                                    <li>{{ $tag->name }}</li>
+                                                @endforeach
+                                                </ul>
+                                            </td>
                                             <td>{{ $data->status }}</td>
                                             <td>
 {{--                                                <a class="btn btn-sm btn-info" href="#">View</a>--}}

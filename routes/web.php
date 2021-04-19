@@ -57,3 +57,12 @@ Route::get('post/trash/delete/{id}',[App\Http\Controllers\PostController::class,
 
 //frontend
 Route::get('blog',[App\Http\Controllers\BlogPageController::class,'blogPageShow'])->name('blog.show');
+Route::post('blog',[App\Http\Controllers\BlogPageController::class,'blogSearch'])->name('blog.search');
+Route::get('blog/category/{slug}',[App\Http\Controllers\BlogPageController::class,'blogSearchByCat'])->name('blog.search.cat');
+Route::get('blog/tag/{slug}',[App\Http\Controllers\BlogPageController::class,'blogSearchByTag'])->name('blog.search.tag');
+Route::get('blog/post/{slug}',[App\Http\Controllers\BlogPageController::class,'blogPostShow'])->name('blog.show.post');
+
+
+//passwordChange
+Route::get('admin/password',[App\Http\Controllers\ChangePassController::class,'passChange'])->name('pass.change');
+Route::post('admin/password-update/',[App\Http\Controllers\ChangePassController::class,'passChangeUp'])->name('admin.password.update');
