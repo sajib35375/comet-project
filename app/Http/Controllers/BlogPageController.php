@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BlogPageController extends Controller
@@ -39,5 +40,19 @@ class BlogPageController extends Controller
        return view('comet.blog-post',[
            'all_data' => $post
        ]);
+    }
+    public function blogSingleShow($slug){
+        $post = Post::where('slug',$slug)->first();
+        return view('comet.blog-single',[
+            'all_post' => $post
+        ]);
+    }
+    public function blogSearchByName($id){
+
+        $user =User::where('id',$id)->first();
+
+//        return view('comet.blog-name',[
+//            'all_data' =>$user
+//        ]);
     }
 }

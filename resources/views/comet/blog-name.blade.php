@@ -9,9 +9,10 @@
                 <div class="col-md-8">
                     <div class="blog-posts">
 
-                        @foreach($all_data as $post)
+                        @foreach($all_data->posts as $post)
+
                             @php
-                                $featured = json_decode($post->featured);
+                                $post=$featured = json_decode($post->featured);
                             @endphp
                             @if($featured->post_type=='Gallery')
                                 <article class="post-single">
@@ -46,7 +47,7 @@
                                 <article class="post-single">
                                     <div class="post-info">
                                         <h2><a href="#">{{ $post->title }}</a></h2>
-                                        <h6 class="upper"><span>By</span><a href="{{ route('blog.search.name',$post->id) }}">{{ $post->user->name }}</a><span class="dot"></span><span>{{ date('d M,Y',strtotime($post->created_at)) }}</span><span class="dot"></span>
+                                        <h6 class="upper"><span>By</span><a href="#">{{ $post->user->name }}</a><span class="dot"></span><span>{{ date('d M,Y',strtotime($post->created_at)) }}</span><span class="dot"></span>
                                             @foreach($post->tag as $tag)
                                                 <a href="#" class="post-tag">{{ $tag->name }}</a>
 
@@ -71,7 +72,7 @@
                             <article class="post-single">
                                 <div class="post-info">
                                     <h2><a href="#">{{ $post->title }}</a></h2>
-                                    <h6 class="upper"><span>By</span><a href="{{ route('blog.search.name',$post->id) }}">{{ $post->user->name }}</a><span class="dot"></span><span>{{ date('d M,Y',strtotime($post->created_at)) }}</span><span class="dot"></span>
+                                    <h6 class="upper"><span>By</span><a href="#">{{ $post->user->name }}</a><span class="dot"></span><span>{{ date('d M,Y',strtotime($post->created_at)) }}</span><span class="dot"></span>
                                         @foreach($post->tag as $tag)
                                             <a href="#" class="post-tag">{{ $tag->name }}</a>
 

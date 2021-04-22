@@ -61,6 +61,8 @@ Route::post('blog',[App\Http\Controllers\BlogPageController::class,'blogSearch']
 Route::get('blog/category/{slug}',[App\Http\Controllers\BlogPageController::class,'blogSearchByCat'])->name('blog.search.cat');
 Route::get('blog/tag/{slug}',[App\Http\Controllers\BlogPageController::class,'blogSearchByTag'])->name('blog.search.tag');
 Route::get('blog/post/{slug}',[App\Http\Controllers\BlogPageController::class,'blogPostShow'])->name('blog.show.post');
+Route::get('blog/single/{slug}',[App\Http\Controllers\BlogPageController::class,'blogSingleShow'])->name('blog.single.post');
+Route::get('blog/{id}',[App\Http\Controllers\BlogPageController::class,'blogSearchByName'])->name('blog.search.name');
 
 
 //passwordChange
