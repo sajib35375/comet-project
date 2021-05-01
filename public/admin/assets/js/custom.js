@@ -144,7 +144,38 @@
         $('a.ok').css('background-color','#19c1dc');
 
 
+        // edit-post
 
+        $(document).on('click','#post_edit_btn',function (e){
+            e.preventDefault();
+            let id = $(this).attr('edit_id');
+
+            $.ajax({
+                url:'/post/edit/'+id,
+                success:function (data){
+
+                    $('form#edit_form_id input[name="title"]').val(data.title);
+                    if (data.featured_type=='Image') {
+                        $('form#edit_form_id img#image_id').attr('src','/admin/assets/img/'+data.featured_image);
+                    }else if(data.featured_type=='Gallery') {
+                        let all_data = data.featured_gal;
+                        alert(all_data);
+                        // let image_gall='';
+                        // for(var data of all_data){
+                        //     image_gall = '<img style="width: 200px;height: 200px;" src="'/admin/assets/img/'+data">';
+                        //     // alert(image_gall);
+                        //     // $('.gallery img').attr('src','/admin/assets/img/'+all_data);
+                        // }
+
+
+
+                    }
+                    $('#post_edit_modal').modal('show');
+
+                }
+            });
+
+        });
 
 
 

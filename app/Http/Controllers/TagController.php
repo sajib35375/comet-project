@@ -21,7 +21,7 @@ class TagController extends Controller
 
         Tag::create([
             'name' => $request->name,
-            'slug' => Str::slug($request->name),
+            'slug' =>$this->getSlug($request->name),
         ]);
         return redirect()->back()->with('success','Tag added successfully');
     }

@@ -34,10 +34,10 @@
         </div>
         <!-- end of widget      -->
         <div class="widget">
-            <h6 class="upper">Latest Posts</h6>
+            <h6 class="upper">Popular Posts</h6>
             <ul class="nav">
                 @php
-                    $all_post = App\Models\Post::latest()->get();
+                    $all_post = App\Models\Post::orderBy('view','DESC')->latest()->get();
                 @endphp
                 @foreach($all_post as $post)
                 <li><a href="{{ route('blog.show.post',$post->slug) }}">{{ $post->title }}<i class="ti-arrow-right"></i><span>{{ date('d M,Y',strtotime($post->created_at)) }}</span></a>

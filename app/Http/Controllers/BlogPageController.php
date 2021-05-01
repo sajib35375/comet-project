@@ -43,6 +43,11 @@ class BlogPageController extends Controller
     }
     public function blogSingleShow($slug){
         $post = Post::where('slug',$slug)->first();
+
+
+        $post_id = $post->id;
+        $this->getCount($post_id);
+
         return view('comet.blog-single',[
             'all_post' => $post
         ]);
@@ -51,8 +56,14 @@ class BlogPageController extends Controller
 
         $user =User::where('id',$id)->first();
 
-//        return view('comet.blog-name',[
-//            'all_data' =>$user
-//        ]);
+        return view('comet.blog-name',[
+            'all_data' =>$user->posts
+        ]);
+    }
+    public function getCount($post_id){
+        $post_view_count = Post::find($post_id);
+        $old_view = $post_view_count->view;
+        $post_view_count->view = $old_view+1;
+        $post_view_count->update();
     }
 }

@@ -21,7 +21,7 @@ class CategoryController extends Controller
 
         Category::create([
             'name' => $request->name,
-            'slug' => Str::slug($request->name),
+            'slug' => $this->getSlug($request->name),
         ]);
         return redirect()->back()->with('success','Category added successfully');
 
@@ -49,7 +49,7 @@ class CategoryController extends Controller
         $id = $request->update_id;
         $update_data = Category::find($id);
         $update_data->name = $request->name;
-        $update_data->slug = Str::slug($request->name);
+        $update_data->slug = $this->getSlug($request->name);
         $update_data->update();
 
     }

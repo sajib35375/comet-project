@@ -16,8 +16,8 @@
                             @if($featured->post_type=='Gallery')
                                 <article class="post-single">
                                     <div class="post-info">
-                                        <h2><a href="#">{{ $post->title }}</a></h2>
-                                        <h6 class="upper"><span>By</span><a href="#"> Admin</a><span class="dot"></span><span>{{ date('d M,Y',strtotime($post->created_at)) }}</span><span class="dot"></span><a href="#" class="post-tag">Startups</a></h6>
+                                        <h2><a href="{{ route('blog.single.post',$post->slug) }}">{{ $post->title }}</a></h2>
+                                        <h6 class="upper"><span>By</span><a href="{{ route('blog.search.name',$post->user->id) }}">{{ $post->user->name }}</a><span class="dot"></span><span>{{ date('d M,Y',strtotime($post->created_at)) }}</span><span class="dot"></span><a href="#" class="post-tag">Startups</a></h6>
                                     </div>
                                     <div class="post-media">
                                         <div data-options="{&quot;animation&quot;: &quot;slide&quot;, &quot;controlNav&quot;: true" class="flexslider nav-outside">
@@ -40,8 +40,8 @@
                             @if($featured->post_type=='Image')
                                 <article class="post-single">
                                     <div class="post-info">
-                                        <h2><a href="#">{{ $post->title }}</a></h2>
-                                        <h6 class="upper"><span>By</span><a href="#"> Admin</a><span class="dot"></span><span>{{ date('d M,Y',strtotime($post->created_at)) }}</span><span class="dot"></span><a href="#" class="post-tag">Startups</a></h6>
+                                        <h2><a href="{{ route('blog.single.post',$post->slug) }}">{{ $post->title }}</a></h2>
+                                        <h6 class="upper"><span>By</span><a href="{{ route('blog.search.name',$post->user->id) }}">{{ $post->user->name }}</a><span class="dot"></span><span>{{ date('d M,Y',strtotime($post->created_at)) }}</span><span class="dot"></span><a href="#" class="post-tag">Startups</a></h6>
                                     </div>
                                     <div class="post-media">
                                         <a href="#">
@@ -60,8 +60,8 @@
                             @if($featured->post_type=='Video')
                             <article class="post-single">
                                 <div class="post-info">
-                                    <h2><a href="#">{{ $post->title }}</a></h2>
-                                    <h6 class="upper"><span>By</span><a href="#"> Admin</a><span class="dot"></span><span>{{ date('d M,Y',strtotime($post->created_at)) }}</span><span class="dot"></span><a href="#" class="post-tag">Entrepreneurship</a></h6>
+                                    <h2><a href="{{ route('blog.single.post',$post->slug) }}">{{ $post->title }}</a></h2>
+                                    <h6 class="upper"><span>By</span><a href="{{ route('blog.search.name',$post->user->id) }}">{{ $post->user->name }}</a><span class="dot"></span><span>{{ date('d M,Y',strtotime($post->created_at)) }}</span><span class="dot"></span><a href="#" class="post-tag">Entrepreneurship</a></h6>
                                 </div>
                                 <div class="post-media">
                                     <div class="media-video">

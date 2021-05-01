@@ -80,7 +80,7 @@
                                             <td>{{ $data->status }}</td>
                                             <td>
 {{--                                                <a class="btn btn-sm btn-info" href="#">View</a>--}}
-                                                <a class="btn btn-sm btn-warning" href="#"><i class="fa fa-edit"></i></a>
+                                                <a class="btn btn-sm btn-warning" id="post_edit_btn" edit_id={{ $data->id }}  href="#"><i class="fa fa-edit"></i></a>
                                                 <a class="btn btn-sm btn-danger" href="{{ route('post.trash.update',$data->id) }}"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
@@ -99,6 +99,46 @@
 
     </div>
     <!-- /Main Wrapper -->
+
+{{--post edit modal--}}
+    <div id="post_edit_modal" class="modal fade">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>All Post control panel</h2>
+                </div>
+                <div class="modal-body">
+                    <form id="edit_form_id" action="#" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="">Title</label>
+                            <input name="title" class="form-control" type="text">
+                        </div>
+                        <div class="form-group">
+                            <img style="width: 400px;" id="image_id" src="" alt="">
+                            <label for="">Featured for Image</label>
+                            <input name="featured-image" class="form-control-file" type="file">
+                        </div>
+                        <div class="form-group">
+                            <div class="gallery">
+                                <img src="" alt="">
+                            </div>
+                            <label for="">Featured for Gallery</label>
+                            <input name="featured-gallery" class="form-control-file" type="file" multiple>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Content</label>
+                            <textarea name="content" ></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input value="update" class="btn btn-info btn-sm" type="submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 

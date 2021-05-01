@@ -68,9 +68,18 @@ class PostController extends Controller
         }
         $video='';
         $youtube=substr($request->video,12,7);
+        $youtube_list = substr($request->video,43,1);
+        $replace = substr($request->video,32,11);
+        $youtube_url="https://www.youtube.com/watch?v=$replace";
         $vimeo=substr($request->video,8,5);
         if ($youtube=='youtube'){
-            $video=str_replace('watch?v=','embed/',$request->video);
+            if ($youtube_list!='&'){
+                $video=str_replace('watch?v=','embed/',$request->video);
+            }else{
+                $video=str_replace('watch?v=','embed/',$youtube_url);
+            }
+
+
         }else if ($vimeo=='vimeo'){
             $video=str_replace('https://vimeo.com/','https://player.vimeo.com/video/',$request->video);
         }
@@ -87,7 +96,7 @@ class PostController extends Controller
 
         $post_data = Post::create([
             'title' => $request->title,
-            'slug' => Str::slug($request->title),
+            'slug' => $this->getSlug($request->title),
             'user_id' => Auth::user()->id,
             'featured'=>json_encode($post_feature),
             'content' => $request->content,
@@ -111,4 +120,17 @@ class PostController extends Controller
         $delete_data->delete();
         return redirect()->back()->with('success','data permanently delete');
     }
+    public function postEdit($id){
+        $post_edit = Post::find($id);
+        $feature = json_decode($post_edit->featured);
+        return[
+            'title'=>$post_edit->title,
+            'featured_type' => $feature->post_type,
+            'featured_image' => $feature->post_image,
+            'featured_gal' => $feature->post_gallery,
+            'content' => $post_edit->content,
+        ];
+    }
+
+
 }
